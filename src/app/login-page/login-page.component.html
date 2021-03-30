@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Login</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input formControlName="email" type="email" id="email">
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input formControlName='password' type="password" id="password">
+        </div>
+
+        <div class="btn-block">
+            <button class="btn" type="submit" [disabled]="form.invalid">Sing in</button>
+            <a class="btn" routerLink="register">Create new account</a>
+        </div>
+        
+    </form>
+</div>
