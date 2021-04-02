@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { MyValidators } from '../my.validators';
+import { HeroApiResponse } from '../shared/interfaces';
+import { HeroService } from '../shared/services/hero.service';
+import { RecentSearchesService } from '../shared/services/recent-searches.service';
 
 @Component({
   selector: 'app-hero-selection-page',
@@ -7,9 +13,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroSelectionPageComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('searchInput') searchInput: ElementRef;
+
+  heroResponse: HeroApiResponse;
+
+  form: FormGroup;
+
+  faSearch = faSearch;
+
+  constructor(
+    public heroService: HeroService,
+    public searhces: RecentSearchesService
+    ) { }
 
   ngOnInit(): void {
+    this.searhces.updateSearches();
+    this.form = new FormGroup({
+      searchInput: new FormControl(null, MyValidators.heroValidation)
+    });
+  }
+
+  searchHeroes() {
+    const hero = this.searchInput.nativeElement.value;
+    
+    this.heroService.getHero(hero).subscribe((response) => {
+      this.heroResponse = response;
+      this.searhces.addSearch(hero);
+    });
+    
+  }
+
+  repeatSearch(e){
+    const hero = e.target.textContent;
+    this.heroService.getHero(hero).subscribe((response) => {
+      this.heroResponse = response;
+    });
   }
 
 }

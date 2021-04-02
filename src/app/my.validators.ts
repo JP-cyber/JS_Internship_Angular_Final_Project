@@ -80,4 +80,15 @@ export class MyValidators {
         MyValidators.userName = control.value;
         return errObj;
     }
+
+    static heroValidation(control: FormControl):{[key: string]: boolean} {
+        const regExp = /^[a-z]+$/g;
+
+        if( !regExp.test(control.value) ){
+            return {
+                '[invalidInput]': true
+            }
+        }
+        return null;
+    }
 }

@@ -4,6 +4,7 @@ import { FbAuthResponse, User } from "../interfaces";
 import { Observable, Subject, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from "src/environments/environment";
+import { RecentSearchesService } from "./recent-searches.service";
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,10 @@ export class AuthService {
 
     error$: Subject<string> = new Subject<string>();
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private searches: RecentSearchesService
+        ) {}
 
     get token(): string {
         const expDate = new Date(
@@ -38,6 +42,7 @@ export class AuthService {
     logout() {
         localStorage.removeItem('fb-token');
         localStorage.removeItem('fb-token-exp');
+        this.searches.removeSearches();
     }
 
     isAuthanticated(): boolean {
