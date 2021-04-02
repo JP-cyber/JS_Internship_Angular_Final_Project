@@ -15,7 +15,7 @@ export class RecentSearchesService {
     }
 
     addSearch(search: string) {
-        if( !this.searches.includes(search) ){
+        if( search !== '' && !this.searches.includes(search) ){
             this.searches.push(search);
             this.updateSearches();
         }else{

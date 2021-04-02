@@ -7,9 +7,19 @@
 </nav>
 <div class="container">
     <form [formGroup]="form" class="find-hero" (submit)="searchHeroes()">
-        <button>A</button>
-        <input formControlName="searchInput" #searchInput type="text" id="heroInput" placeholder="Enter the hero name">
-        <button type="submit" class="search-btn"><fa-icon [icon]='faSearch' ></fa-icon></button>
+        <app-alphabet-select 
+            (onSearch)="searchHeroes($event)"
+        ></app-alphabet-select>
+        <input 
+            formControlName="searchInput" 
+            #searchInput type="text" 
+            id="heroInput" placeholder="Enter the hero name">
+        <button 
+            [disabled]='form.invalid' 
+            type="submit" 
+            class="search-btn">
+            <fa-icon [icon]='faSearch' ></fa-icon>
+        </button>
     </form>
     <div *ngIf="searhces.getSearches().length > 0" class="recent-search">
         <p (click)="repeatSearch($event)" *ngFor="let search of searhces.getSearches()">{{search}}</p>

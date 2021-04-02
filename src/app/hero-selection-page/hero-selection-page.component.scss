@@ -35,19 +35,13 @@ nav{
             float: right;
             border: 3px solid black;
         }
-        button{
-            height: 36px;
-            width: 36px;
-            border-radius: 50%;
-            border: 2px solid blue;
-            background-color: #fff;
-            position: relative;
-        }
+        
         .search-btn{
             border: 1px solid transparent;
             position: relative;
             right: 6vw;
             background-color: transparent;
+            outline: none;
         }
     }
 

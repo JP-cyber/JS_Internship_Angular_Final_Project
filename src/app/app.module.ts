@@ -13,13 +13,15 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroService } from './shared/services/hero.service';
 import { RecentSearchesService } from './shared/services/recent-searches.service';
+import { AlphabetSelectComponent } from './alphabet-select/alphabet-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     NewUserPageComponent,
-    HeroSelectionPageComponent
+    HeroSelectionPageComponent,
+    AlphabetSelectComponent
   ],
   imports: [
     BrowserModule,

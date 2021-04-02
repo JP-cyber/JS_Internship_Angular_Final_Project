@@ -1,0 +1,10 @@
+<div class="alphabet-component">
+    <a (click)="showAlphabet = !showAlphabet">A</a>
+    <div *ngIf="showAlphabet" class="rest-letters">
+        <a 
+            *ngFor="let letter of alphabet"
+            (click)="search($event)"
+        >{{letter}}</a>
+    </div>
+</div>
+

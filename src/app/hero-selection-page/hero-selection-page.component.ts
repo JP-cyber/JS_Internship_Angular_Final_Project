@@ -33,12 +33,18 @@ export class HeroSelectionPageComponent implements OnInit {
     });
   }
 
-  searchHeroes() {
-    const hero = this.searchInput.nativeElement.value;
+  searchHeroes(heroName = null) {
+    const hero = heroName || this.searchInput.nativeElement.value;
+    this.searchInput.nativeElement.value = hero;
     
     this.heroService.getHero(hero).subscribe((response) => {
-      this.heroResponse = response;
-      this.searhces.addSearch(hero);
+      if(response.response == 'success'){
+        this.heroResponse = response;
+
+        if(!heroName){
+          this.searhces.addSearch(hero);
+        }
+      }
     });
     
   }
