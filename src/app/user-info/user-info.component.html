@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="display-select">
+        <div (click)="display='heroesList'">
+            Heroes List
+        </div>
+        <div (click)="display = 'history'">
+            History
+        </div>
+        <div (click)="display = 'powerups'">
+            Powerups
+        </div>
+    </div>
+    
+
+    <div class="heroes" *ngIf="display == 'heroesList'">
+        <ul class="heroes">
+            <li *ngFor="let hero of selectedHeroes" class="hero">
+                <p class="title">{{hero.name}}</p>
+                <div class="stats">
+                    intelligence {{hero.powerstats.intelligence}}
+                    strength {{hero.powerstats.strength}}
+                    speed {{hero.powerstats.speed}}
+                    durability {{hero.powerstats.durability}}
+                    power {{hero.powerstats.power}}
+                    combat {{hero.powerstats.combat}}
+                </div>
+                <img src="{{hero.image.url}}">
+                <button [disabled]="heroService.getSelectedHeroes().includes(hero.id)">Select hero</button>
+            </li>
+        </ul>
+    </div>
+</div>
+

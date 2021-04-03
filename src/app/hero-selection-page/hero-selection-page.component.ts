@@ -37,7 +37,7 @@ export class HeroSelectionPageComponent implements OnInit {
     const hero = heroName || this.searchInput.nativeElement.value;
     this.searchInput.nativeElement.value = hero;
     
-    this.heroService.getHero(hero).subscribe((response) => {
+    this.heroService.getHeroes(hero).subscribe((response) => {
       if(response.response == 'success'){
         this.heroResponse = response;
 
@@ -51,7 +51,7 @@ export class HeroSelectionPageComponent implements OnInit {
 
   repeatSearch(e){
     const hero = e.target.textContent;
-    this.heroService.getHero(hero).subscribe((response) => {
+    this.heroService.getHeroes(hero).subscribe((response) => {
       this.heroResponse = response;
     });
   }
