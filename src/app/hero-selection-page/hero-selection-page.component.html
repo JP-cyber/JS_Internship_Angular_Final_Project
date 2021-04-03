@@ -1,0 +1,35 @@
+<div class="container">
+    <form [formGroup]="form" class="find-hero" (submit)="searchHeroes()">
+        <app-alphabet-select 
+            (onSearch)="searchHeroes($event)"
+        ></app-alphabet-select>
+        <input 
+            formControlName="searchInput" 
+            #searchInput type="text" 
+            id="heroInput" placeholder="Enter the hero name">
+        <button 
+            [disabled]='form.invalid' 
+            type="submit" 
+            class="search-btn">
+            <fa-icon [icon]='faSearch' ></fa-icon>
+        </button>
+    </form>
+    <div *ngIf="searhces.getSearches().length > 0" class="recent-search">
+        <p (click)="repeatSearch($event)" *ngFor="let search of searhces.getSearches()">{{search}}</p>
+    </div>
+    <ul class="heroes" *ngIf='heroResponse && heroResponse.response === "success"'>
+        <li class="hero" *ngFor="let hero of heroResponse.results">
+            <p class="title">{{hero.name}}</p>
+            <div class="stats">
+                intelligence: {{hero.powerstats.intelligence}}
+                strength: {{hero.powerstats.strength}}
+                speed: {{hero.powerstats.speed}}
+                durability: {{hero.powerstats.durability}}
+                power: {{hero.powerstats.power}}
+                combat: {{hero.powerstats.combat}}
+            </div>
+            <img src="{{hero.image.url}}">
+            <button [disabled]="heroService.getSelectedHeroes().includes(hero.id)" (click)="heroService.selectHero(hero.id)">Select hero</button>
+        </li>
+    </ul>
+</div>
