@@ -35,6 +35,11 @@
             text-align: center;
             margin: 0 auto;
             margin-bottom: 5px;
+            transition: .3s;
+            &:hover{
+                cursor: pointer;
+                background-color: rgb(1, 70, 70);
+            }
         }
     }
 

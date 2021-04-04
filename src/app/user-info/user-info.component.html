@@ -33,9 +33,30 @@
                 <button class='view-hero'>View Hero</button>
             </li>
         </ul>
+        <div #addIcon class="add-hero">
+            <a routerLink="/"><fa-icon [icon]="addHeroIcon"></fa-icon></a>
+        </div>
     </div>
-    <div #addIcon class="add-hero">
-        <a routerLink="/"><fa-icon [icon]="addHeroIcon"></fa-icon></a>
+
+    <div *ngIf="display == 'history'" class="history">
+        <table>
+            <thead>
+                <tr>
+                  <th>Battle date</th>
+                  <th>Hero name</th>
+                  <th>Opponent name</th>
+                  <th>Battle result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Some date</td>
+                  <td>Some hero name</td>
+                  <td>Opponent name</td>
+                  <td>Battle result</td>
+                </tr>
+        </table>
     </div>
+    
 </div>
 
