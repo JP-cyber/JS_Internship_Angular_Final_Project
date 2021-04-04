@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { SingleHeroResponse } from '../shared/interfaces';
 import { HeroService } from '../shared/services/hero.service';
 
@@ -7,10 +8,12 @@ import { HeroService } from '../shared/services/hero.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('addIcon') addIcon: ElementRef;
   display = '';
   selectedHeroes: Array<SingleHeroResponse> = [];
+  addHeroIcon = faPlusCircle;
 
   constructor(
     public heroService: HeroService
@@ -26,5 +29,10 @@ export class UserInfoComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    if(this.heroService.isEmpty()){
+      this.addIcon.nativeElement.classList.add('center');
+    }
+  }
 
 }

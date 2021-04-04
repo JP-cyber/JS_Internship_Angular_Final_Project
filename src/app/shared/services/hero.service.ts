@@ -28,9 +28,26 @@ export class HeroService {
         return this.http.get<SingleHeroResponse>(`${this.apiBase}/${id}`);
     }
 
-    selectHero(id: string) {
-        this.heroes.push(id);
+    toggleHero(id: string) {
+        if(this.isHeroSelected(id)){
+            const heroIndex = this.heroes.indexOf(id);
+            this.heroes.splice(heroIndex, 1);
+        }else{
+            this.heroes.push(id);
+        }
+        
         localStorage.setItem( 'selectedHeroes', JSON.stringify(this.heroes) );
+    }
+
+    isHeroSelected(id: string) {
+        if(this.heroes.includes(id)){
+            return true;
+        }
+        return false;
+    }
+
+    isEmpty() {
+        return this.heroes.length === 0;
     }
 
     getSelectedHeroes(): Array<string> {

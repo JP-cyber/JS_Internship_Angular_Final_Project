@@ -62,9 +62,9 @@
                 left: 15px;
             }
             img{
-                max-height: 90%;
+                max-height: 80%;
                 position: absolute;
-                right: 15px;
+                right: 20px;
                 top: 5%;
                 border-radius: 5px;
             }
@@ -76,7 +76,7 @@
                 left: 15px;
                 width: 40%;
             }
-            button{
+            .toggle-hero{
                 position: absolute;
                 bottom: 5%;
                 left: 15px;
@@ -85,10 +85,16 @@
                 border-color: transparent;
                 color: #fff;
                 border-radius: 5px;
-                &:disabled{
-                    background-color: grey;
-                    color: darkgray;
-                }
+            }
+            .view-hero{
+                position: absolute;
+                bottom: 5%;
+                right: 20px;
+                font-size: 16px;
+                background-color: rgba(167, 20, 20, 0.493);
+                border-color: transparent;
+                color: #fff;
+                border-radius: 5px;
             }
         }
     }

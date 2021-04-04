@@ -25,9 +25,17 @@
                     combat {{hero.powerstats.combat}}
                 </div>
                 <img src="{{hero.image.url}}">
-                <button [disabled]="heroService.getSelectedHeroes().includes(hero.id)">Select hero</button>
+                <button class="toggle-hero"
+                    (click)="heroService.toggleHero(hero.id)"
+                    >
+                    {{ heroService.isHeroSelected(hero.id) ? 'Remove hero' : 'Select Hero' }}
+                </button>
+                <button class='view-hero'>View Hero</button>
             </li>
         </ul>
+    </div>
+    <div #addIcon class="add-hero">
+        <a routerLink="/"><fa-icon [icon]="addHeroIcon"></fa-icon></a>
     </div>
 </div>
 
