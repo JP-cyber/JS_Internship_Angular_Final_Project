@@ -3,19 +3,23 @@ import { Injectable } from "@angular/core";
 @Injectable({providedIn: 'root'})
 export class RecentSearchesService {
 
-    private searches: Array<string> = [];
+    private searches: string[] = [];
 
-    updateSearches() {
+    updateSearches(): void {
         const localSearches = JSON.parse( localStorage.getItem('searches') );
-        if(localSearches && localSearches.length > this.searches.length){
+        const isLocalSerchesBigEnough = localSearches && localSearches.length > this.searches.length;
+
+        if(isLocalSerchesBigEnough){
             this.searches = localSearches;
         }
         
         localStorage.setItem('searches', JSON.stringify(this.searches) );
     }
 
-    addSearch(search: string) {
-        if( !this.searches.includes(search) ){
+    addSearch(search: string): void {
+        const hasSearch = this.searches.includes(search);
+
+        if(!hasSearch){
             this.searches.push(search);
             this.updateSearches();
         }else{
@@ -23,11 +27,11 @@ export class RecentSearchesService {
         }
     }
 
-    getSearches() {
+    getSearches(): string[] {
         return this.searches;
     }
 
-    removeSearches() {
+    removeSearches(): void {
         localStorage.removeItem('searches');
     }
 }

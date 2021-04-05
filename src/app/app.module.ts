@@ -13,13 +13,16 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroService } from './shared/services/hero.service';
 import { RecentSearchesService } from './shared/services/recent-searches.service';
+import { RepeatSearchComponent } from './repeat-search/repeat-search.component';
+import { ErrorService } from './shared/services/error.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     NewUserPageComponent,
-    HeroSelectionPageComponent
+    HeroSelectionPageComponent,
+    RepeatSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { RecentSearchesService } from './shared/services/recent-searches.service
     AuthService,
     AuthGuard,
     HeroService,
-    RecentSearchesService
+    RecentSearchesService,
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })

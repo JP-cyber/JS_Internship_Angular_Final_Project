@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { MyValidators } from '../my.validators';
@@ -12,8 +12,6 @@ import { RecentSearchesService } from '../shared/services/recent-searches.servic
   styleUrls: ['./hero-selection-page.component.scss']
 })
 export class HeroSelectionPageComponent implements OnInit {
-
-  @ViewChild('searchInput') searchInput: ElementRef;
 
   heroResponse: HeroApiResponse;
 
@@ -33,8 +31,8 @@ export class HeroSelectionPageComponent implements OnInit {
     });
   }
 
-  searchHeroes() {
-    const hero = this.searchInput.nativeElement.value;
+  searchHeroes(): void {
+    const hero = this.form.get('searchInput').value;
     
     this.heroService.getHero(hero).subscribe((response) => {
       this.heroResponse = response;
@@ -43,9 +41,8 @@ export class HeroSelectionPageComponent implements OnInit {
     
   }
 
-  repeatSearch(e){
-    const hero = e.target.textContent;
-    this.heroService.getHero(hero).subscribe((response) => {
+  repeatSearch(text: string): void {
+    this.heroService.getHero(text).subscribe((response) => {
       this.heroResponse = response;
     });
   }
