@@ -13,6 +13,7 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroService } from './shared/services/hero.service';
 import { RecentSearchesService } from './shared/services/recent-searches.service';
+import { AlphabetSelectComponent } from './alphabet-select/alphabet-select.component';
 import { RepeatSearchComponent } from './repeat-search/repeat-search.component';
 import { ErrorService } from './shared/services/error.service';
 
@@ -22,6 +23,7 @@ import { ErrorService } from './shared/services/error.service';
     LoginPageComponent,
     NewUserPageComponent,
     HeroSelectionPageComponent,
+    AlphabetSelectComponent,
     RepeatSearchComponent
   ],
   imports: [

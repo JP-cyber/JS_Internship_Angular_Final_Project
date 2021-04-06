@@ -6,14 +6,20 @@
     <div class="avatar">AVATAR</div>
 </nav>
 <div class="container">
-    <form [formGroup]="form" class="find-hero" (ngSubmit)="searchHeroes()">
-        <button (click)="$event.preventDefault()">A</button>
+    <form [formGroup]="form" class="find-hero" (submit)="searchHeroes()">
+        <app-alphabet-select 
+            (onSearch)="repeatSearch($event)"
+        ></app-alphabet-select>
         <input 
             formControlName="searchInput" 
             #searchInput type="text" 
-            id="heroInput" 
-            placeholder="Enter the hero name">
-        <button type="submit" class="search-btn"><fa-icon [icon]='faSearch' ></fa-icon></button>
+            id="heroInput" placeholder="Enter the hero name">
+        <button 
+            [disabled]='form.invalid' 
+            type="submit" 
+            class="search-btn">
+            <fa-icon [icon]='faSearch' ></fa-icon>
+        </button>
     </form>
     <app-repeat-search (onRepeatSearch)="repeatSearch($event)"></app-repeat-search>
     <ul class="heroes" *ngIf='heroResponse && heroResponse.response === "success"'>

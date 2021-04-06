@@ -32,11 +32,12 @@ export class HeroSelectionPageComponent implements OnInit {
   }
 
   searchHeroes(): void {
-    const hero = this.form.get('searchInput').value;
+    const hero =  this.form.get('searchInput').value;
     
     this.heroService.getHero(hero).subscribe((response) => {
-      this.heroResponse = response;
-      this.searhces.addSearch(hero);
+      if(response.response == 'success'){
+        this.heroResponse = response;
+      }
     });
     
   }
@@ -44,6 +45,7 @@ export class HeroSelectionPageComponent implements OnInit {
   repeatSearch(text: string): void {
     this.heroService.getHero(text).subscribe((response) => {
       this.heroResponse = response;
+      this.form.get('searchInput').setValue(text);
     });
   }
 
