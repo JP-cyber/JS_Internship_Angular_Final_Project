@@ -6,8 +6,8 @@ import { Environment } from "./interface";
 
 export const environment: Environment = {
   production: false,
-  apiKey: 'AIzaSyD4_feEIHObZsGuQRYVNQXbN0M2FSyPFn0',
-  heroApi: '1379239962427799'
+  apiKey: '',
+  heroApi: ''
 };
 
 /*
