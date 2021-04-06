@@ -1,0 +1,164 @@
+.container{
+    background-color: darkturquoise;
+    .display-select{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        div{
+            text-align: center;
+            width: 30%;
+            border: 3px solid black;
+            line-height: 26px;
+            background-color: #fff;
+            color: #000;
+            transition: .3s;
+    
+            &:hover{
+                background-color: maroon;
+                color: #fff;
+            }
+        }
+    }
+
+    .heroes{
+        width: 100%;
+        padding: 0;
+        list-style: none;
+        margin: auto;
+        width: 90%;
+
+        .hero{
+            background-color:darkorchid;
+            border-radius: 5px;
+            height: 55vh;
+            position: relative;
+            margin-bottom: 5px;
+            .title{
+                color:maroon;
+                font-size: 30px;
+                font-weight: bold;
+                top: 5%;
+                margin: 0;
+                position: absolute;
+                left: 15px;
+            }
+            img{
+                max-height: 80%;
+                position: absolute;
+                right: 20px;
+                top: 5%;
+                border-radius: 5px;
+            }
+            .stats{
+                color: #fff;
+                position: absolute;
+                font-size: 28px;
+                top: 20%;
+                left: 15px;
+                width: 44%;
+            }
+            .toggle-hero{
+                position: absolute;
+                bottom: 5%;
+                left: 15px;
+                font-size: 24px;
+                background-color: rgba(167, 20, 20, 0.493);
+                border-color: transparent;
+                color: #fff;
+                border-radius: 5px;
+            }
+            .view-hero{
+                position: absolute;
+                bottom: 5%;
+                right: 20px;
+                font-size: 16px;
+                background-color: rgba(167, 20, 20, 0.493);
+                border-color: transparent;
+                color: #fff;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .add-hero{
+        font-size: 50px;
+        display: inline;
+        position: relative;
+        float: right;
+        left: 40px;
+        bottom: 206px;
+        &.center{
+            bottom: 0;
+            left: 0;
+            display: block;
+            float: none;
+            text-align: center;
+        }
+    }
+
+    .history{
+        margin: 0 auto;
+        text-align: center;
+        table{
+            width: 100%;
+            display: inline-table;
+
+            thead{
+                background-color:purple;
+                th{
+                    padding: 5px;
+                    color: #fff;
+                    font-weight: normal;
+                }
+            }
+
+            td{
+                background-color: #fff;
+                padding: 5px;
+            }
+        }
+    }
+
+    .powerups{
+        width: 100%;
+        .card{
+            width: 100%;
+            background-color:darkorchid;
+            border-radius: 5px;
+            height: 55vh;
+            margin: 5px auto;
+            position: relative;
+            text-align: center;
+
+            img{
+                border-radius: 5px;
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                max-height: 96%;
+                height: 100%;
+                width: 322px;
+            }
+
+            .card-title{
+                color: #fff;
+                position: absolute;
+                right: 15px;
+                top: 5px;
+                font-size: 36px;
+                width: 41%;
+            }
+            p{
+                color: #fff;
+                font-size: 26px;
+                position: absolute;
+                right: 3%;
+                top: 25%;
+                max-width: 38%;
+
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,21 @@
+nav{
+    background-color: maroon;
+    padding: 10px;
+    position: relative;
+    .logo a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .right-nav{
+        float: right;
+        display: inline-flex;
+        position: absolute;
+        right: 3vw;
+        top: 1vh;
+        p, a{
+            color: #fff;
+            margin: 5px;
+            text-decoration: none;
+        }
+    }
+}

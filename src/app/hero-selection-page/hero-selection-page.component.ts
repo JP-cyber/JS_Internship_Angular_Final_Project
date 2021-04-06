@@ -32,18 +32,21 @@ export class HeroSelectionPageComponent implements OnInit {
   }
 
   searchHeroes(): void {
-    const hero = this.form.get('searchInput').value;
+    const hero =  this.form.get('searchInput').value;
     
-    this.heroService.getHero(hero).subscribe((response) => {
-      this.heroResponse = response;
-      this.searhces.addSearch(hero);
+    this.heroService.getHeroes(hero).subscribe((response) => {
+      if(response.response == 'success'){
+        this.heroResponse = response;
+        this.searhces.addSearch(hero);
+      }
     });
     
   }
 
   repeatSearch(text: string): void {
-    this.heroService.getHero(text).subscribe((response) => {
+    this.heroService.getHeroes(text).subscribe((response) => {
       this.heroResponse = response;
+      this.form.get('searchInput').setValue(text);
     });
   }
 

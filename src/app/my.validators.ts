@@ -94,11 +94,12 @@ export class MyValidators {
     static heroValidation(control: FormControl):{[key: string]: boolean} {
         const regExp = /^[a-z]+$/g;
 
-        if( !regExp.test(control.value) ){
+        if(control.value !== '' && regExp.test(control.value) ){
+            return null;
+        }else{
             return {
                 '[invalidInput]': true
             }
         }
-        return null;
     }
 }
