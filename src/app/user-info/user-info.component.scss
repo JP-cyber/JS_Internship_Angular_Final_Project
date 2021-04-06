@@ -119,5 +119,46 @@
             }
         }
     }
+
+    .powerups{
+        width: 100%;
+        .card{
+            width: 100%;
+            background-color:darkorchid;
+            border-radius: 5px;
+            height: 55vh;
+            margin: 5px auto;
+            position: relative;
+            text-align: center;
+
+            img{
+                border-radius: 5px;
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                max-height: 96%;
+                height: 100%;
+                width: 322px;
+            }
+
+            .card-title{
+                color: #fff;
+                position: absolute;
+                right: 15px;
+                top: 5px;
+                font-size: 36px;
+                width: 41%;
+            }
+            p{
+                color: #fff;
+                font-size: 26px;
+                position: absolute;
+                right: 3%;
+                top: 25%;
+                max-width: 38%;
+
+            }
+        }
+    }
     
 }
