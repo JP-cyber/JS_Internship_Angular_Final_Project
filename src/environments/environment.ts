@@ -6,7 +6,8 @@ import { Environment } from "./interface";
 
 export const environment: Environment = {
   production: false,
-  apiKey: 'some api key'
+  apiKey: '',
+  heroApi: ''
 };
 
 /*

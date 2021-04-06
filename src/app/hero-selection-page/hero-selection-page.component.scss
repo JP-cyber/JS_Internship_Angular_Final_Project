@@ -1,0 +1,105 @@
+nav{
+    background-color: maroon;
+    padding: 10px;
+    position: relative;
+    .logo{
+        color: #fff;
+    }
+    .user-info{
+        position: absolute;
+        right: 9vw;
+        top: 25%;
+        color: #fff;
+    }
+    .avatar{
+        position: absolute;
+        right: 3vw;
+        top: 25%;
+        color: #fff;
+    }
+}
+.container{
+    background-color: darkturquoise;
+    height: 100%;
+    max-width: 600px;
+
+    form{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 10px;
+
+        input{
+            height: 30px;
+            width: 80%;
+            float: right;
+            border: 3px solid black;
+        }
+        button{
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            border: 2px solid blue;
+            background-color: #fff;
+            position: relative;
+        }
+        .search-btn{
+            border: 1px solid transparent;
+            position: relative;
+            right: 6vw;
+            background-color: transparent;
+        }
+    }
+
+    .heroes{
+        background-color: #fff;
+        width: 90%;
+        border: 3px solid black;
+        padding: 0;
+        list-style: none;
+        padding: 10px;
+
+        .hero{
+            background-color:darkorchid;
+            border-radius: 5px;
+            height: 55vh;
+            position: relative;
+            margin-bottom: 5px;
+            .title{
+                color:maroon;
+                font-size: 30px;
+                font-weight: bold;
+                top: 5%;
+                margin: 0;
+                position: absolute;
+                left: 15px;
+            }
+            img{
+                max-height: 90%;
+                position: absolute;
+                right: 15px;
+                top: 5%;
+                border-radius: 5px;
+            }
+            .stats{
+                color: #fff;
+                position: absolute;
+                font-size: 28px;
+                top: 20%;
+                left: 15px;
+                width: 40%;
+            }
+            button{
+                position: absolute;
+                bottom: 5%;
+                left: 15px;
+                font-size: 24px;
+                background-color: rgba(167, 20, 20, 0.493);
+                border-color: transparent;
+                color: #fff;
+                border-radius: 5px;
+            }
+        }
+    }
+    
+}

@@ -1,1 +1,34 @@
-<p>hero-selection-page works!</p>
+<nav>
+    <div class="logo">
+        Logo
+    </div>
+    <div class="user-info">User Info</div>
+    <div class="avatar">AVATAR</div>
+</nav>
+<div class="container">
+    <form [formGroup]="form" class="find-hero" (ngSubmit)="searchHeroes()">
+        <button (click)="$event.preventDefault()">A</button>
+        <input 
+            formControlName="searchInput" 
+            #searchInput type="text" 
+            id="heroInput" 
+            placeholder="Enter the hero name">
+        <button type="submit" class="search-btn"><fa-icon [icon]='faSearch' ></fa-icon></button>
+    </form>
+    <app-repeat-search (onRepeatSearch)="repeatSearch($event)"></app-repeat-search>
+    <ul class="heroes" *ngIf='heroResponse && heroResponse.response === "success"'>
+        <li class="hero" *ngFor="let hero of heroResponse.results">
+            <p class="title">{{hero.name}}</p>
+            <div class="stats">
+                intelligence: {{hero.powerstats.intelligence}}
+                strength: {{hero.powerstats.strength}}
+                speed: {{hero.powerstats.speed}}
+                durability: {{hero.powerstats.durability}}
+                power: {{hero.powerstats.power}}
+                combat: {{hero.powerstats.combat}}
+            </div>
+            <img src="{{hero.image.url}}">
+            <button [disabled]="heroService.getSelectedHeroes().includes(hero.id)" (click)="heroService.selectHero(hero.id)">Select hero</button>
+        </li>
+    </ul>
+</div>
