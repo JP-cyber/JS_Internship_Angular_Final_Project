@@ -1,0 +1,6 @@
+<div *ngIf='searches.getSearches().length > 0' #searchBlock class="recent-search">
+    <p 
+        *ngFor="let search of searches.getSearches()"
+        (click)="repeatSearch($event.target.textContent)"
+        >{{search}}</p>
+</div>

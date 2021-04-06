@@ -9,7 +9,7 @@ export class AlphabetSelectComponent {
 
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>()
 
-  alphabet = [
+  alphabet: string[] = [
     "a", "b", "c", "d", "e","f",
      "g", "h", "i", "j", "k", "l",
       "m", "n", "o", "p", "q", "r",
@@ -17,12 +17,11 @@ export class AlphabetSelectComponent {
         "y", "z"
       ];
   
-  showAlphabet = false;
+  showAlphabet: boolean = false;
 
   constructor() {}
 
-  search(e) {
-    const letter = e.target.textContent;
+  search(letter: string): void {
     this.onSearch.emit(letter);
     this.showAlphabet = false;
   }

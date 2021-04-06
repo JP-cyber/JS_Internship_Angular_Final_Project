@@ -8,7 +8,7 @@ import { HeroApiResponse, SingleHeroResponse } from "../interfaces";
 export class HeroService {
 
     private apiBase: string = `https://superheroapi.com/api.php/${environment.heroApi}`;
-    private heroes: Array<string> = [];
+    private heroes: string[] = [];
 
     constructor(private http: HttpClient) {
         const selectedHeroes = JSON.parse( localStorage.getItem('selectedHeroes') );
@@ -28,12 +28,12 @@ export class HeroService {
         return this.http.get<SingleHeroResponse>(`${this.apiBase}/${id}`);
     }
 
-    selectHero(id: string) {
-        this.heroes.push(id);
+    selectHero(id: string): void {
+        this.heroes = [...this.heroes, id]
         localStorage.setItem( 'selectedHeroes', JSON.stringify(this.heroes) );
     }
 
-    getSelectedHeroes(): Array<string> {
+    getSelectedHeroes(): string[] {
         return this.heroes;
     }
 
