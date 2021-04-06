@@ -16,6 +16,8 @@ import { RecentSearchesService } from './shared/services/recent-searches.service
 import { AlphabetSelectComponent } from './alphabet-select/alphabet-select.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { RepeatSearchComponent } from './repeat-search/repeat-search.component';
+import { ErrorService } from './shared/services/error.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
     HeroSelectionPageComponent,
     AlphabetSelectComponent,
     MainLayoutComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    RepeatSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
     AuthService,
     AuthGuard,
     HeroService,
-    RecentSearchesService
+    RecentSearchesService,
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })

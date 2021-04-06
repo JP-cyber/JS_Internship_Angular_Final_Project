@@ -29,7 +29,7 @@ export class UserInfoComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if(this.heroService.isEmpty()){
       this.addIcon.nativeElement.classList.add('center');
     }
