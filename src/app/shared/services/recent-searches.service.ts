@@ -17,9 +17,9 @@ export class RecentSearchesService {
     }
 
     addSearch(search: string): void {
-        const hasSearch = this.searches.includes(search);
+        const hasSearch = search !== '' && !this.searches.includes(search);
 
-        if(!hasSearch){
+        if(hasSearch){
             this.searches.push(search);
             this.updateSearches();
         }else{
