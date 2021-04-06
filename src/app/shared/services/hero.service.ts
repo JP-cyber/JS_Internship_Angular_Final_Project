@@ -8,7 +8,7 @@ import { HeroApiResponse, SingleHeroResponse } from "../interfaces";
 export class HeroService {
 
     private apiBase: string = `https://superheroapi.com/api.php/${environment.heroApi}`;
-    private heroes: Array<string> = [];
+    private heroes: string[] = [];
 
     constructor(private http: HttpClient) {
         const selectedHeroes = JSON.parse( localStorage.getItem('selectedHeroes') );
@@ -28,7 +28,7 @@ export class HeroService {
         return this.http.get<SingleHeroResponse>(`${this.apiBase}/${id}`);
     }
 
-    toggleHero(id: string) {
+    toggleHero(id: string): void {
         if(this.isHeroSelected(id)){
             const heroIndex = this.heroes.indexOf(id);
             this.heroes.splice(heroIndex, 1);
@@ -39,18 +39,18 @@ export class HeroService {
         localStorage.setItem( 'selectedHeroes', JSON.stringify(this.heroes) );
     }
 
-    isHeroSelected(id: string) {
+    isHeroSelected(id: string): boolean {
         if(this.heroes.includes(id)){
             return true;
         }
         return false;
     }
 
-    isEmpty() {
+    isEmpty(): boolean {
         return this.heroes.length === 0;
     }
 
-    getSelectedHeroes(): Array<string> {
+    getSelectedHeroes(): string[] {
         return this.heroes;
     }
 
