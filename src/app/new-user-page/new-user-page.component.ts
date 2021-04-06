@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MyValidators } from '../my.validators';
+import { User } from '../shared/interfaces';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-new-user-page',
@@ -11,7 +14,10 @@ export class NewUserPageComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -33,7 +39,16 @@ export class NewUserPageComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
+    const user: User = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+      userName: this.form.value.userName
+    };
+
+    this.auth.setUser(user).subscribe(() => {
+      this.form.reset();
+      this.router.navigate(['/login']);
+    });
   }
 
 }

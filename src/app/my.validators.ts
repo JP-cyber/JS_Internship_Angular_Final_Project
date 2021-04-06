@@ -34,7 +34,7 @@ export class MyValidators {
         const email = MyValidators.email;
         const reg = /((\w+\.){1,2}\w+|\w+)@/g;
 
-        if(email){
+        if(email && control.value){
             const emailParts = email.match(reg)[0].slice(0, -1).split('.');
             emailParts.forEach(p => {
                 if(control.value.includes(p)){
@@ -45,7 +45,7 @@ export class MyValidators {
         
         const userName = MyValidators.userName;
 
-        if(userName) {
+        if(userName && control.value) {
             if(!userName.includes('-')){
                 const userNameParts = userName.replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(' ');
                 userNameParts.forEach(p => {
