@@ -22,7 +22,7 @@ export class MyValidators {
     }
 
     static passwordValidation(control: FormControl):{[key: string]: boolean} {
-        const errObj = {};
+        let errObj = {};
 
         const isInvalid = !/[A-Z]/g.test(control.value) || !/[0-9]/g.test(control.value)
         || !/[$%.&!-]/g.test(control.value);
@@ -30,38 +30,48 @@ export class MyValidators {
         if(isInvalid){
             errObj['invalidPassword'] = true;
         }
+        errObj = MyValidators.passwordEmailPartsValidation(control.value, errObj);
+        errObj = MyValidators.passwordUserNamePartsValidation(control.value, errObj);
 
+        return errObj;
+    }
+
+    static passwordEmailPartsValidation(password: string, errObj: {}):{[key: string]: boolean}  {
         const email = MyValidators.email;
         const reg = /((\w+\.){1,2}\w+|\w+)@/g;
 
-        if(email && control.value){
+        if(email && password){
             const emailParts = email.match(reg)[0].slice(0, -1).split('.');
             emailParts.forEach(p => {
-                if(control.value.includes(p)){
+                if(password.includes(p)){
                     errObj['invalidPassword'] = true;
                 }
             });
         }
-        
+
+        return errObj;
+    }
+
+    static passwordUserNamePartsValidation(password: string, errObj: {}):{[key: string]: boolean} {
         const userName = MyValidators.userName;
 
-        if(userName && control.value) {
+        if(userName && password) {
             if(!userName.includes('-')){
                 const userNameParts = userName.replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(' ');
                 userNameParts.forEach(p => {
-                    if( control.value.includes(p) ){
+                    if( password.includes(p) ){
                         errObj['invalidPassword'] = true;
                     }
                 });
             }else{
                 const kebabCaseParts = userName.replace(/-/g, ' ').split(' ');
                 kebabCaseParts.forEach(p => {
-                    if( control.value.includes(p) ){
+                    if( password.includes(p) ){
                         errObj['invalidPassword'] = true;
                     }
                 });
             } 
-            
+
         }
 
         return errObj;

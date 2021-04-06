@@ -5,12 +5,19 @@ import { Observable, Subject, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from "src/environments/environment";
 import { RecentSearchesService } from "./recent-searches.service";
+import { ErrorService } from "./error.service";
+
+enum StorageKeys{
+    token = 'fb-token',
+    tokenExp = 'fb-token-exp'
+}
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
+    private apiBase: string = 'https://identitytoolkit.googleapis.com/v1';
     error$: Subject<string> = new Subject<string>();
 
     constructor(
@@ -20,28 +27,28 @@ export class AuthService {
 
     get token(): string {
         const expDate = new Date(
-            localStorage.getItem('fb-token-exp')
+            localStorage.getItem(StorageKeys.tokenExp)
         );
 
         if(new Date() > expDate){
             this.logout();
             return null;
         }
-        return localStorage.getItem('fb-token');
+        return localStorage.getItem(StorageKeys.token);
     }
 
     login(user: User): Observable<any> {
         user.returnSecureToken = true;
-        return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
+        return this.http.post(`${this.apiBase}/accounts:signInWithPassword?key=${environment.apiKey}`, user)
         .pipe(
             tap(this.setToken),
-            catchError(this.handleError.bind(this))
+            catchError(ErrorService.handleError.bind(this))
         );
     }
 
-    logout() {
-        localStorage.removeItem('fb-token');
-        localStorage.removeItem('fb-token-exp');
+    logout(): void {
+        localStorage.removeItem(StorageKeys.token);
+        localStorage.removeItem(StorageKeys.tokenExp);
         this.searches.removeSearches();
     }
 
@@ -52,36 +59,18 @@ export class AuthService {
     setUser(user: User): Observable<any> {
         localStorage.setItem(user.userName, user.email);
         return this.http.post
-        (`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.apiKey}`,
+        (`${this.apiBase}/accounts:signUp?key=${environment.apiKey}`,
         {
             email: user.email,
             password: user.password,
             returnSecureToken: true
         })
     }
-
-    private handleError(error: HttpErrorResponse) {
-        const {message} = error.error.error;
-
-        switch(message) {
-            case 'INVALID_EMAIL':
-                this.error$.next('Invalid email');
-                break;
-            case 'INVALID_PASSWORD':
-                this.error$.next('Invalid password');
-                break;
-            case 'EMAIL_NOT_FOUND':
-                this.error$.next('Email not found');
-                break;
-        }
-
-        return throwError(error);
-    }
     
-    private setToken(response: FbAuthResponse) {
+    private setToken(response: FbAuthResponse): void {
         const timeOffset = new Date().getTime() + +response.expiresIn * 1000;
         const expiresDate = new Date(timeOffset);
-        localStorage.setItem('fb-token', response.idToken);
-        localStorage.setItem('fb-token-exp', expiresDate.toString() );
+        localStorage.setItem(StorageKeys.token, response.idToken);
+        localStorage.setItem(StorageKeys.tokenExp, expiresDate.toString() );
     }
 }
