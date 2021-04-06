@@ -8,7 +8,7 @@
 <div class="container">
     <form [formGroup]="form" class="find-hero" (submit)="searchHeroes()">
         <app-alphabet-select 
-            (onSearch)="searchHeroes($event)"
+            (onSearch)="repeatSearch($event)"
         ></app-alphabet-select>
         <input 
             formControlName="searchInput" 
@@ -21,9 +21,7 @@
             <fa-icon [icon]='faSearch' ></fa-icon>
         </button>
     </form>
-    <div *ngIf="searhces.getSearches().length > 0" class="recent-search">
-        <p (click)="repeatSearch($event)" *ngFor="let search of searhces.getSearches()">{{search}}</p>
-    </div>
+    <app-repeat-search (onRepeatSearch)="repeatSearch($event)"></app-repeat-search>
     <ul class="heroes" *ngIf='heroResponse && heroResponse.response === "success"'>
         <li class="hero" *ngFor="let hero of heroResponse.results">
             <p class="title">{{hero.name}}</p>

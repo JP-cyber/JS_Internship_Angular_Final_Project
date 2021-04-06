@@ -3,7 +3,7 @@
     <div *ngIf="showAlphabet" class="rest-letters">
         <a 
             *ngFor="let letter of alphabet"
-            (click)="search($event)"
+            (click)="search($event.target.textContent)"
         >{{letter}}</a>
     </div>
 </div>
