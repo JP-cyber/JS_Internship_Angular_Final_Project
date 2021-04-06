@@ -30,7 +30,7 @@
                     >
                     {{ heroService.isHeroSelected(hero.id) ? 'Remove hero' : 'Select Hero' }}
                 </button>
-                <button class='view-hero'>View Hero</button>
+                <button [routerLink]="['', 'hero-info', hero.id]" class='view-hero'>View Hero</button>
             </li>
         </ul>
         <div #addIcon class="add-hero">

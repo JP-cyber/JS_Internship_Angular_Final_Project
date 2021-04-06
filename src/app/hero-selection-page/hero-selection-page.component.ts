@@ -37,6 +37,7 @@ export class HeroSelectionPageComponent implements OnInit {
     this.heroService.getHeroes(hero).subscribe((response) => {
       if(response.response == 'success'){
         this.heroResponse = response;
+        this.searhces.addSearch(hero);
       }
     });
     

@@ -18,6 +18,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { RepeatSearchComponent } from './repeat-search/repeat-search.component';
 import { ErrorService } from './shared/services/error.service';
+import { HeroInfoComponent } from './hero-info/hero-info.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ErrorService } from './shared/services/error.service';
     AlphabetSelectComponent,
     MainLayoutComponent,
     UserInfoComponent,
-    RepeatSearchComponent
+    RepeatSearchComponent,
+    HeroInfoComponent
   ],
   imports: [
     BrowserModule,
