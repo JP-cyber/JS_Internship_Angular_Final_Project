@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  submit() {
+  submit(): void {
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password,

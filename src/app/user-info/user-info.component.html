@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="display-select">
+        <div (click)="display='heroesList'">
+            Heroes List
+        </div>
+        <div (click)="display = 'history'">
+            History
+        </div>
+        <div (click)="display = 'powerups'">
+            Powerups
+        </div>
+    </div>
+    
+
+    <div class="heroes" *ngIf="display == 'heroesList'">
+        <ul class="heroes">
+            <li *ngFor="let hero of selectedHeroes" class="hero">
+                <p class="title">{{hero.name}}</p>
+                <div class="stats">
+                    intelligence {{hero.powerstats.intelligence}}
+                    strength {{hero.powerstats.strength}}
+                    speed {{hero.powerstats.speed}}
+                    durability {{hero.powerstats.durability}}
+                    power {{hero.powerstats.power}}
+                    combat {{hero.powerstats.combat}}
+                </div>
+                <img src="{{hero.image.url}}">
+                <button class="toggle-hero"
+                    (click)="heroService.toggleHero(hero.id)"
+                    >
+                    {{ heroService.isHeroSelected(hero.id) ? 'Remove hero' : 'Select Hero' }}
+                </button>
+                <button [routerLink]="['', 'hero-info', hero.id]" class='view-hero'>View Hero</button>
+            </li>
+        </ul>
+        <div #addIcon class="add-hero">
+            <a routerLink="/"><fa-icon [icon]="addHeroIcon"></fa-icon></a>
+        </div>
+    </div>
+    
+    <div *ngIf="display == 'history'" class="history">
+        <table >
+            <thead>
+              <tr (click)="sorted = !sorted">
+                <th (click)="sortByHeader('date')">Battle date</th>
+                <th (click)="sortByHeader('heroName')">Hero name</th>
+                <th (click)="sortByHeader('opponentName')">Opponent name</th>
+                <th (click)="sortByHeader('battleResult')">Battle result</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let battle of battleItems'>
+                    <td>{{battle.date | date: 'medium'}}</td>
+                    <td>
+                        <a [routerLink]="['', 'hero-info', battle.heroId]">
+                        {{battle.heroName}}
+                    </a>
+                    </td>
+                    <td>
+                        <a [routerLink]="['', 'hero-info', battle.opponentId]">
+                            {{battle.opponentName}}
+                        </a>
+                    </td>
+                    <td>{{battle.battleResult}}</td>
+                </tr>
+            </tbody>
+            </table>
+    </div>
+
+    <div *ngIf='display == "powerups"' class="powerups">
+        <div class="card" *ngFor="let powerup of battles.getPowerups()">
+            <div class="card-title">{{powerup.name}}</div>
+            <img src="{{powerup.imageUrl}}">
+            <p>
+                {{powerup.bonus}}: +10<br>
+                Uses left: {{powerup.left}}
+            </p>
+        </div>
+    </div>
+</div>
+

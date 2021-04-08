@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="hero-avatar">
+        <img src="{{hero.image.url}}">
+    </div>
+    <div class="hero-info">
+        <div class="info-block">
+            <div class="title">{{hero.name | uppercase}}</div>
+            <div class="card">
+                Combat: {{hero.powerstats.combat}}<br>
+                Durability: {{hero.powerstats.durability}}<br>
+                Intelligence: {{hero.powerstats.intelligence}}<br>
+                Power: {{hero.powerstats.power}}<br>
+                Speed: {{hero.powerstats.speed}}<br>
+                Strength: {{hero.powerstats.strength}}<br>
+            </div>
+            <div class="card">
+                Full name: {{hero.biography['full-name']}}<br>
+                Ater-egos: {{hero.biography['alter-egos']}}<br>
+                Place of birth: {{hero.biography['place-of-birth']}}<br>
+                First appearance: {{hero.biography['first-appearance']}}<br>
+                Publisher: {{hero.biography.publisher}}<br>
+                Alignment: {{hero.biography.alignment}}<br>
+            </div>
+            <div class="card">
+                Gender: {{hero.appearance.gender}}<br>
+                Race: {{hero.appearance.race}}<br>
+                Height: {{hero.appearance.height[1]}}<br>
+                Weight: {{hero.appearance.weight[1]}}<br>
+                Eye color: {{hero.appearance['eye-color']}}<br>
+                Hair color: {{hero.appearance['hair-color']}}<br>
+            </div>
+        </div>
+        <div class="extra-info-block">
+            <div class="card">
+                Occupation: {{hero.work.occupation}}<br>
+                Base: {{hero.work.base}}<br>
+                Group affiliation: {{hero.connections['group-affiliation']}}<br>
+                Relatives: {{hero.connections.relatives}}<br>
+            </div>
+        </div>
+    </div>
+</div>
