@@ -8,5 +8,10 @@
         text-align: center;
         margin: 0 auto;
         margin-bottom: 5px;
+        transition: .3s;
+        &:hover{
+            background-color: maroon;
+            color: #fff;
+        }
     }
 }

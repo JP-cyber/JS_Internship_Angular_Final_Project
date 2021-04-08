@@ -13,8 +13,17 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroService } from './shared/services/hero.service';
 import { RecentSearchesService } from './shared/services/recent-searches.service';
+import { AlphabetSelectComponent } from './alphabet-select/alphabet-select.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 import { RepeatSearchComponent } from './repeat-search/repeat-search.component';
 import { ErrorService } from './shared/services/error.service';
+import { HeroInfoComponent } from './hero-info/hero-info.component';
+import { HeroBattleComponent } from './hero-battle/hero-battle.component';
+import { BattleService } from './shared/services/battle.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SortService } from './shared/services/sort.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +31,12 @@ import { ErrorService } from './shared/services/error.service';
     LoginPageComponent,
     NewUserPageComponent,
     HeroSelectionPageComponent,
-    RepeatSearchComponent
+    AlphabetSelectComponent,
+    MainLayoutComponent,
+    UserInfoComponent,
+    RepeatSearchComponent,
+    HeroInfoComponent,
+    HeroBattleComponent
   ],
   imports: [
     BrowserModule,
@@ -30,14 +44,18 @@ import { ErrorService } from './shared/services/error.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     HeroService,
     RecentSearchesService,
-    ErrorService
+    ErrorService,
+    BattleService,
+    SortService
   ],
   bootstrap: [AppComponent]
 })

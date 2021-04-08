@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="hero-card">
+        <div class="name">{{userHero.name | uppercase}}</div>
+        <a [routerLink]="['', 'hero-info', userHero.id]">
+            <img src="{{userHero.image.url}}">
+        </a>
+        <div class="powerstats">
+            Intelligence: {{userHero.powerstats.intelligence}}<br>
+            Strength: {{userHero.powerstats.strength}}<br>
+            Speed: {{userHero.powerstats.speed}}<br>
+            Durability: {{userHero.powerstats.durability}}<br>
+            Power: {{userHero.powerstats.power}}<br>
+            Combat: {{userHero.powerstats.combat}}<br>
+        </div>
+    </div>
+    <div class="battle-card">
+        <div class="battle-name">
+            {{userHero.name}}<br>
+            VS<br>
+            {{opponentHero.name}}
+        </div>
+        <button (click)="startBattle(userHero, opponentHero)">Fight!!!</button>
+        <div #powerups class="powerups">
+            <div 
+                *ngFor="let powerup of battle.getPowerups()" 
+                class="powerup"
+                (click)="togglePowerup(powerup.bonus, $event.target)"
+            >
+                {{powerup.name}}<br>
+                {{powerup.bonus + ': +10'}}<br>
+                Avalible: {{powerup.left}}
+            </div>
+        </div>
+        
+    </div>
+    <div class="hero-card">
+        <div class="name">{{opponentHero.name | uppercase}}</div>
+        <a [routerLink]="['', 'hero-info', opponentHero.id]">
+            <img src="{{opponentHero.image.url}}">
+        </a>
+        
+        <div class="powerstats">
+            Intelligence: {{opponentHero.powerstats.intelligence}}<br>
+            Strength: {{opponentHero.powerstats.strength}}<br>
+            Speed: {{opponentHero.powerstats.speed}}<br>
+            Durability: {{opponentHero.powerstats.durability}}<br>
+            Power: {{opponentHero.powerstats.power}}<br>
+            Combat: {{opponentHero.powerstats.combat}}<br>
+        </div>
+    </div>
+</div>
+<ngx-spinner name="mySpinner"></ngx-spinner>
+<div *ngIf="displayModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="displayModal = false">
+          <fa-icon [icon]="faClose"></fa-icon>
+        </span>
+        <div class="title">Battle result:</div>
+        <div class="battle-result">
+            Battle time: {{battleResult.date | date:'medium'}}<br>
+            User hero name: {{battleResult.heroName}}<br>
+            Enemy hero name: {{battleResult.opponentName}}<br>
+            Battle result: {{battleResult.battleResult}}
+        </div>
+    </div>
+  </div>
