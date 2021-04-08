@@ -6,6 +6,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from "src/environments/environment";
 import { RecentSearchesService } from "./recent-searches.service";
 import { ErrorService } from "./error.service";
+import { HeroService } from "./hero.service";
+import { BattleService } from "./battle.service";
 
 enum StorageKeys{
     token = 'fb-token',
@@ -22,7 +24,9 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        private searches: RecentSearchesService
+        private searches: RecentSearchesService,
+        private heroes:HeroService,
+        private battles: BattleService
         ) {}
 
     get token(): string {
@@ -50,6 +54,8 @@ export class AuthService {
         localStorage.removeItem(StorageKeys.token);
         localStorage.removeItem(StorageKeys.tokenExp);
         this.searches.removeSearches();
+        this.heroes.clearSelectedHeroes();
+        this.battles.clearBattleInfo();
     }
 
     isAuthanticated(): boolean {

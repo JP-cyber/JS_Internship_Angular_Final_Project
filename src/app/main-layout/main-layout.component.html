@@ -1,0 +1,13 @@
+<nav>
+    <div class="logo">
+        <a routerLink="/">Logo</a>
+    </div>
+    <div class="fight">
+        <a [class.disabled]="heroService.isEmpty()" [routerLink]="['', 'hero-battle']" >Fight</a>
+    </div>
+    <div class="right-nav">
+        <a [routerLink]="['', 'user-info']">User Info</a>
+        <div class="avatar">AVATAR</div>
+    </div>
+</nav>
+<router-outlet></router-outlet>
