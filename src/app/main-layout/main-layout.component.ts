@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeroService } from '../shared/services/hero.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class MainLayoutComponent {
 
-  constructor() { }
+  constructor(public heroService: HeroService) { }
 
 }

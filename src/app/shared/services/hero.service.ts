@@ -28,6 +28,11 @@ export class HeroService {
         return this.http.get<SingleHeroResponse>(`${this.apiBase}/${id}`);
     }
 
+    getRandomHero(): Observable<SingleHeroResponse> {
+        const randomId = Math.floor(Math.random() * 732).toString();
+        return this.http.get<SingleHeroResponse>(`${this.apiBase}/${randomId}`);
+    }
+
     toggleHero(id: string): void {
         if(this.isHeroSelected(id)){
             const heroIndex = this.heroes.indexOf(id);
@@ -52,6 +57,11 @@ export class HeroService {
 
     getSelectedHeroes(): string[] {
         return this.heroes;
+    }
+
+    clearSelectedHeroes(): void {
+        localStorage.removeItem('selectedHeroes');
+        this.heroes = [];
     }
 
 }

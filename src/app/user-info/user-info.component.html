@@ -39,73 +39,41 @@
     </div>
     
     <div *ngIf="display == 'history'" class="history">
-        <table>
+        <table >
             <thead>
-              <tr>
-                <th>Battle date</th>
-                <th>Hero name</th>
-                <th>Opponent name</th>
-                <th>Battle result</th>
+              <tr (click)="sorted = !sorted">
+                <th (click)="sortByHeader('date')">Battle date</th>
+                <th (click)="sortByHeader('heroName')">Hero name</th>
+                <th (click)="sortByHeader('opponentName')">Opponent name</th>
+                <th (click)="sortByHeader('battleResult')">Battle result</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Battle date</td>
-                <td>Hero name</td>
-                <td>Opponent name</td>
-                <td>Battle result</td>
-              </tr>
+                <tr *ngFor='let battle of battleItems'>
+                    <td>{{battle.date | date: 'medium'}}</td>
+                    <td>
+                        <a [routerLink]="['', 'hero-info', battle.heroId]">
+                        {{battle.heroName}}
+                    </a>
+                    </td>
+                    <td>
+                        <a [routerLink]="['', 'hero-info', battle.opponentId]">
+                            {{battle.opponentName}}
+                        </a>
+                    </td>
+                    <td>{{battle.battleResult}}</td>
+                </tr>
             </tbody>
             </table>
     </div>
 
     <div *ngIf='display == "powerups"' class="powerups">
-        <div class="card">
-            <div class="card-title">Captain's America Shield</div>
-            <img src="https://png.pngitem.com/pimgs/s/6-61962_captain-america-shield-png-transparent-png.png">
+        <div class="card" *ngFor="let powerup of battles.getPowerups()">
+            <div class="card-title">{{powerup.name}}</div>
+            <img src="{{powerup.imageUrl}}">
             <p>
-                Durability: +10
-                Uses left: 5
-            </p>
-        </div>
-        <div class="card">
-            <div class="card-title">Mjolnir</div>
-            <img src="https://www.seekpng.com/png/small/57-573278_thor-hammer-png-image-transparent-download-mjolnir-icon.png">
-            <p>
-                Power: +10
-                Uses left: 5
-            </p>
-        </div>
-        <div class="card">
-            <div class="card-title">Iron Man's Nano Armor</div>
-            <img src="https://simg.nicepng.com/png/small/78-782326_ironman1icon-reactor-arc-iron-man.png">
-            <p>
-                Combat: +10
-                Uses left: 5
-            </p>
-        </div>
-        <div class="card">
-            <div class="card-title">Dr.Strange's Cloak</div>
-            <img src="https://p.jing.fm/clipimg/small/175-1752857_doctor-strange-costume-png-doctor-strange-editing-background.png">
-            <p>
-                Intelligence: +10
-                Uses left: 5
-            </p>
-        </div>
-        <div class="card">
-            <div class="card-title">Green Lantern's Ring</div>
-            <img src="https://i.pinimg.com/originals/2f/e2/8c/2fe28ce820eed86d6d8a42fae92a17b1.png">
-            <p>
-                Strength: +10
-                Uses left: 5
-            </p>
-        </div>
-        <div class="card">
-            <div class="card-title">Flash Boots</div>
-            <img src="https://i.imgur.com/VTp6Kal.png">
-            <p>
-                Speed: +10
-                Uses left: 5
+                {{powerup.bonus}}: +10<br>
+                Uses left: {{powerup.left}}
             </p>
         </div>
     </div>

@@ -2,20 +2,40 @@ nav{
     background-color: maroon;
     padding: 10px;
     position: relative;
-    .logo a{
-        color: #fff;
-        text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    .logo{
+        width: 135px;
+        a{
+            color: #fff;
+            text-decoration: none;
+            z-index: 10;
+        }
+    }
+        
+    .fight{
+        font-size: 20px;
+        text-align: center;
+        a{
+            color: #fff;
+            text-decoration: none;
+        }
+        .disabled{
+            pointer-events: none;
+        }
     }
     .right-nav{
-        float: right;
-        display: inline-flex;
-        position: absolute;
-        right: 3vw;
-        top: 1vh;
-        p, a{
+        width: 135px;
+        a{
             color: #fff;
             margin: 5px;
             text-decoration: none;
         }
+        .avatar{
+            color: #fff;
+            margin: 0;
+            display: inline;
+        }
     }
+    
 }

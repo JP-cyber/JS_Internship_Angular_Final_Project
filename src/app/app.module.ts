@@ -19,6 +19,11 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { RepeatSearchComponent } from './repeat-search/repeat-search.component';
 import { ErrorService } from './shared/services/error.service';
 import { HeroInfoComponent } from './hero-info/hero-info.component';
+import { HeroBattleComponent } from './hero-battle/hero-battle.component';
+import { BattleService } from './shared/services/battle.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SortService } from './shared/services/sort.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { HeroInfoComponent } from './hero-info/hero-info.component';
     MainLayoutComponent,
     UserInfoComponent,
     RepeatSearchComponent,
-    HeroInfoComponent
+    HeroInfoComponent,
+    HeroBattleComponent
   ],
   imports: [
     BrowserModule,
@@ -38,14 +44,18 @@ import { HeroInfoComponent } from './hero-info/hero-info.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     HeroService,
     RecentSearchesService,
-    ErrorService
+    ErrorService,
+    BattleService,
+    SortService
   ],
   bootstrap: [AppComponent]
 })

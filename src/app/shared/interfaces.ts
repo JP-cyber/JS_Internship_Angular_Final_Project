@@ -70,3 +70,19 @@ export interface SingleHeroResponse {
         url: string
     }
 }
+
+export interface Battle {
+    date: Date,
+    heroName: string,
+    heroId: string,
+    opponentName: string,
+    opponentId: string,
+    battleResult: string
+}
+
+export interface Powerup {
+    name?: string,
+    bonus: string,
+    imageUrl?: string,
+    left: number
+}
